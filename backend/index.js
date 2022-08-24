@@ -6,7 +6,7 @@ const cors = require("cors");
 // passes information from the frontend to the backend
 const bodyParser = require("body-parser");
 // This is our middleware for talking to mongoDB
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 // bcrypt for encrypting data (passwrords)
 const bcrypt = require("bcryptjs");
 // grab our config file
@@ -16,6 +16,7 @@ console.log(config);
 // Schemas
 // every schema needs a capital letter
 const Student = require("./models/student.js");
+const User = require("./models/user.js");
 
 // start our dependencies
 app.use(bodyParser.json());
@@ -29,12 +30,11 @@ app.listen(port, () => {
 
 // let's connect to mongoDB
 // cluster name: cluster0
-mongoose
-  .connect(
-    `mongodb+srv://${config.username}:${config.password}@cluster0.4tz0udz.mongodb.net/?retryWrites=true&w=majority`
-    // .then is a chaining method used with promises
-    // in simple terms, it will run something depending on the function before it
-  )
+mongoose.connect(
+  `mongodb+srv://${config.username}:${config.password}@cluster0.4tz0udz.mongodb.net/?retryWrites=true&w=majority`
+  // .then is a chaining method used with promises
+  // in simple terms, it will run something depending on the function before it
+)
   .then(() => {
     console.log(`You've connected to MongoDB!`);
     // .catch is a method to catch any errors that might happen in a promise
@@ -150,13 +150,60 @@ app.patch("/updateStudent/:id", (req, res) => {
 });
 
 // =======================
-//    GET SINGLE COFFEE
+//      Registering users
+// =======================
+app.post('/registerUser', (req, res) => { // Checking if user is in the DB already
+
+  User.findOne({ username: req.body.username }, (err, userResult) => {
+
+    if (userResult) {
+      // send back a string so we can validate the user
+      res.send('username exists');
+    } else {
+      const hash = bcrypt.hashSync(req.body.password); // Encrypt User Password
+      const user = new User({
+        _id: new mongoose.Types.ObjectId,
+        username: req.body.username,
+        password: hash,
+        profile_img_url: req.body.profile_img_url
+      });
+
+      user.save().then(result => { // Save to database and notify userResult
+        res.send(result);
+      }).catch(err => res.send(err));
+    } // Else
+  })
+}) // End of Create Account
+
+// Logging in
+
+// ============
+//     Log In
+// =============
+app.post('/loginUser', (req, res) => {
+  // firstly look for a user with that username
+  User.findOne({ username: req.body.username }, (err, userResult) => {
+    if (userResult) {
+      if (bcrypt.compareSync(req.body.password, userResult.password)) {
+        // success
+        res.send(userResult);
+      } else {
+        res.send('not authorised');
+      } // inner if
+    } else {
+      res.send('user not found');
+    } // outer if
+  }) // Find one ends
+}); // end of post login
+
+// =======================
+//    GET SINGLE STUDENT
 // =======================
 
 app.get('/student/:id', (req, res) => {
   const studentId = req.params.id
   Student.findById(studentId, (err, student) => {
-    if(err) {
+    if (err) {
       console.log(err);
     } else {
       res.send(student);
