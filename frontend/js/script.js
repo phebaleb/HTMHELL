@@ -65,7 +65,7 @@ handleEditFunctionality = (student, id) => {
   let imagePreview = document.getElementById("image-preview");
   let imageurl = document.getElementById("imageUrl");
   let studentDescription = document.getElementById("studentDescription");
-studentName.value = student.name;
+  studentName.value = student.name;
   imageurl.value = student.image_url;
   studentDescription.value = student.description
   imagePreview.innerHTML = `
@@ -106,13 +106,13 @@ studentName.value = student.name;
 populateEditModal = (studentId) => {
   console.log(studentId);
   $.ajax({
-    
+
     url: `http://localhost:3100/student/${studentId}`,
     type: "GET",
     success: (studentData) => {
       // console.log('student was found');
       // console.log(student);
-      handleEditFunctionality (studentData, studentId);
+      handleEditFunctionality(studentData, studentId);
     },
     error: (error) => {
       console.log(error);
@@ -156,15 +156,26 @@ let renderStudents = (students) => {
   console.log("The render student function is running");
   result.innerHTML = "";
   students.forEach((item) => {
-    result.innerHTML += `
+    if (sessionStorage.userID) {
+      result.innerHTML += `
       <div class="result-container" id="${item._id}">
       <img src="${item.image_url}" alt="${item.name}">
       <h3>${item.name}</h3>
-      <p>${item.description}</p>
+      <p>$${item.price}</p> 
       <i class="fa-solid fa-trash-can delete-button"></i>
       <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
       </div>
       `;
+      //if the user isn't logged in
+    } else {
+      result.innerHTML += `
+      <div class="result-container" id="${item._id}">
+      <img src="${item.image_url}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>$${item.price}</p> 
+      </div>
+      `;
+    }
   });
   // all students should be rendered now
   // and now we can collect the delete buttons
@@ -175,3 +186,41 @@ let renderStudents = (students) => {
 
 // start app
 showAllStudents();
+
+let checkLogin = () => {
+  const userDetails = document.getElementById("user-details");
+  let navContent;
+  if (sessionStorage.userID) {
+    // console.log("You're logged in")
+    // console.log(sessionStorage.userName)
+    navContent = `
+    <span id="username">${sessionStorage.userName}</span>
+    <span id="dp" style="background-image: url('${sessionStorage.profileImg}')"></span>
+    <a id="sign-out-button" href="#">Sign out</a>
+    `
+  }
+  // if they're not logged in
+  else {
+    navContent = `
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+    `;
+  }
+  // render our logged in elements
+  userDetails.innerHTML = navContent;
+}
+
+checkLogin();
+
+// Sign out button
+const signoutBtn = document.getElementById("sign-out-button");
+
+let logOut = () => {
+  console.log("You've logged out")
+  sessionStorage.clear();
+  window.location.reload();
+}
+
+if (sessionStorage.userID) {
+  signoutBtn.onclick = () => logOut();
+};
