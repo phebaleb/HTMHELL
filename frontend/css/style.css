@@ -1,3 +1,52 @@
+@font-face {
+  font-family: "FoundersGroteskBold";
+  src: url("../fonts/foundersgrotesk-bold-webfont.woff2"), url("../fonts/foundersgrotesk-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "FoundersGroteskSemibold";
+  src: url("../fonts/foundersgrotesk-semibold-webfont.woff2"), url("../fonts/foundersgrotesk-semibold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "FoundersGroteskRegular";
+  src: url("../fonts/foundersgrotesk-regular-webfont.woff2"), url("../fonts/foundersgrotesk-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "TTTravelsBold";
+  src: url("../fonts/tt_travels_next_bold-webfont.woff2"), url("../fonts/tt_travels_next_bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 body {
-  background-color: pink;
+  background-color: white;
+}
+
+img {
+  width: 100px;
+  height: auto;
+}
+
+h1 {
+  font-family: "TTTravelsBold";
+  color: #5B3EDA;
+}
+
+p {
+  font-family: "FoundersGroteskRegular";
+  color: #5B3EDA;
+}
+
+h4 {
+  font-family: "FoundersGroteskSemibold";
+  color: #5B3EDA;
+}
+
+h2 {
+  font-family: "FoundersGroteskBold";
+  color: #5B3EDA;
 }

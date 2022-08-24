@@ -55,6 +55,7 @@ app.post(`/addStudent`, (req, res) => {
     // give our new student the details we sent from the frontend
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    title: req.body.title,
     image_url: req.body.image_url,
     description: req.body.description,
   });
@@ -132,6 +133,7 @@ app.patch("/updateStudent/:id", (req, res) => {
   Student.findById(idParam, (err, student) => {
     const updatedStudent = {
       name: req.body.name,
+      title: req.body.title,
       description: req.body.description,
       image_url: req.body.image_url,
     };
