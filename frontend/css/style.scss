@@ -1,3 +1,30 @@
+@import 'variables';
+
 body{
-    background-color: pink;
+    background-color: white;
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+h1{
+    font-family: $header-font;
+    color: $main-colour;
+}
+
+p{
+    font-family: $description-font;
+    color: $main-colour;
+}
+
+h4{
+    font-family: $name-font;
+    color: $main-colour;
+}
+
+h2{
+    font-family: $title-font;
+    color: $main-colour;
 }

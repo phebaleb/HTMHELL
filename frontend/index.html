@@ -13,28 +13,28 @@
 </head>
 
 <body>
+
   <nav>
     <a href="index.html"></a>
     <div id="user-details"></div>
   </nav>
-  <h1>Yoobee Student Portfolios</h1>
-  <div id="tools">
-    <!-- forms are way we can wrap inputs -->
-    <!-- if we dont add js void, the page will refresh when you submit the form -->
-    <form id="add-student-form" action="javascript:void(0)">
-      <label for="name-input">Name: </label>
-      <input id="name-input" name="name-input" type="text">
-      <label for="description-input">Description: </label>
-      <input id="description-input" name="description-input" type="text">
-      <label for="image-url-input">Image URL</label>
-      <input id="image-url-input" name="image-url-input" type="text">
-      <button id="student-button">Go</button>
-    </form>
-  </div>
-  <div id="result"></div>
-
-  <!-- EDIT MODAL -->
-  <!-- Button trigger modal -->
+    <h1>Yoobee Student Portfolios</h1>
+    <div id="tools">
+        <!-- forms are way we can wrap inputs -->
+        <!-- if we dont add js void, the page will refresh when you submit the form -->
+        <form id="add-student-form" action="javascript:void(0)">
+            <label for="name-input">Name: </label>
+            <input id="name-input" name="name-input" type="text">
+            <label for="title-input">Title: </label>
+            <input id="title-input" name="title-input" type="text">
+            <label for="description-input">Description: </label>
+            <input id="description-input" name="description-input" type="text">
+            <label for="image-url-input">Image URL</label>
+            <input id="image-url-input" name="image-url-input" type="text">
+            <button id="student-button">Go</button>
+        </form>
+    </div>
+    <div id="result"></div>
 
   <!-- Modal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,19 +51,18 @@
             <!-- <label for="productId">Enter Product Id:</label>
                 <input type="text" name="inputID" id="productId">
                 <br><br> -->
+                <label for="studentTitle">Enter title of the project</label>
+                <input type="text" id="studentTitle" name="studentTitle">
+                <br><br>
 
-            <label for="studentName">Enter name of the student</label>
-            <input type="text" id="studentName" name="studentName">
-            <br><br>
-
-            <label for="studentDescription">Enter name of the student</label>
-            <input type="text" id="studentDescription" name="studentDescription">
-            <br><br>
-
-            <label for="imageUrl">Enter image url of the student</label>
-            <input type="text" id="imageUrl" name="imageUrl">
-            <br><br>
-          </form>
+                <label for="studentDescription">Enter name of the student</label>
+                <input type="text" id="studentDescription" name="studentDescription">
+                <br><br>
+                
+                <label for="imageUrl">Enter image url of the student</label>
+                <input type="text" id="imageUrl" name="imageUrl">
+                <br><br>
+            </form>
         </div>
         <div class="modal-footer">
           <button id="updateStudent" name="studentButton" type="submit" class="btn btn-primary">Update Product</button>

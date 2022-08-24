@@ -3,6 +3,7 @@ const go = document.getElementById("student-button");
 
 // declare all our inputs
 const nameInput = document.getElementById("name-input");
+const titleInput = document.getElementById("title-input");
 const descriptionInput = document.getElementById("description-input");
 const imageURLInput = document.getElementById("image-url-input");
 
@@ -32,6 +33,7 @@ go.onclick = () => {
     data: {
       // the first property (i.e. the one on the left) called name has to be spelt exactly as the schema
       name: nameInput.value,
+      title: titleInput.value,
       description: descriptionInput.value,
       image_url: imageURLInput.value,
     },
@@ -62,10 +64,13 @@ let deleteStudent = (studentId) => {
 
 handleEditFunctionality = (student, id) => {
   let studentName = document.getElementById("studentName");
+  let studentTitle = document.getElementById("studentTitle");
   let imagePreview = document.getElementById("image-preview");
   let imageurl = document.getElementById("imageUrl");
   let studentDescription = document.getElementById("studentDescription");
-  studentName.value = student.name;
+studentName.value = student.name;
+studentTitle.value = student.title;
+
   imageurl.value = student.image_url;
   studentDescription.value = student.description
   imagePreview.innerHTML = `
@@ -79,6 +84,7 @@ handleEditFunctionality = (student, id) => {
     event.preventDefault();
     let studentId = id;
     let studentName = document.getElementById("studentName").value;
+    let studentTitle = document.getElementById("studentTitle").value;
     let imageurl = document.getElementById("imageUrl").value;
     let studentDescription = document.getElementById("studentDescription").value;
     console.log(studentId, studentName, imageurl, studentDescription);
@@ -87,6 +93,7 @@ handleEditFunctionality = (student, id) => {
       type: "PATCH",
       data: {
         name: studentName,
+        title: studentTitle,
         image_url: imageurl,
         description: studentDescription
       },
@@ -94,7 +101,7 @@ handleEditFunctionality = (student, id) => {
         console.log(data);
         showAllStudents();
         $('#editModal').modal('hide');
-        $('#updateProduct').off('click');
+        $('#updateStudent').off('click');
       },
       error: function () {
         console.log("error: cannot update");
@@ -160,8 +167,10 @@ let renderStudents = (students) => {
       result.innerHTML += `
       <div class="result-container" id="${item._id}">
       <img src="${item.image_url}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>$${item.price}</p> 
+      <h2>${item.name}</h2>
+      <h4>${item.title}</h4>
+      <p>${item.description}</p>
+
       <i class="fa-solid fa-trash-can delete-button"></i>
       <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
       </div>
