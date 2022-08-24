@@ -56,6 +56,7 @@ app.post(`/addStudent`, (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     image_url: req.body.image_url,
+    description: req.body.description,
   });
   // to save the newstudent to the database
   // use the variable declared above
@@ -131,7 +132,7 @@ app.patch("/updateStudent/:id", (req, res) => {
   Student.findById(idParam, (err, student) => {
     const updatedStudent = {
       name: req.body.name,
-      price: req.body.price,
+      description: req.body.description,
       image_url: req.body.image_url,
     };
     Student.updateOne(

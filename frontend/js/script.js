@@ -3,6 +3,7 @@ const go = document.getElementById("student-button");
 
 // declare all our inputs
 const nameInput = document.getElementById("name-input");
+const descriptionInput = document.getElementById("description-input");
 const imageURLInput = document.getElementById("image-url-input");
 
 let showAllStudents = () => {
@@ -31,6 +32,7 @@ go.onclick = () => {
     data: {
       // the first property (i.e. the one on the left) called name has to be spelt exactly as the schema
       name: nameInput.value,
+      description: descriptionInput.value,
       image_url: imageURLInput.value,
     },
     success: () => {
@@ -59,11 +61,13 @@ let deleteStudent = (studentId) => {
 };
 
 handleEditFunctionality = (student, id) => {
-  let productName = document.getElementById("studentName");
+  let studentName = document.getElementById("studentName");
   let imagePreview = document.getElementById("image-preview");
   let imageurl = document.getElementById("imageUrl");
+  let studentDescription = document.getElementById("studentDescription");
 studentName.value = student.name;
   imageurl.value = student.image_url;
+  studentDescription.value = student.description
   imagePreview.innerHTML = `
   <img src="${student.image_url}" alt="${studentName}" >`
   // console.log(`the console log was passed in through this id ${id}`)
@@ -76,13 +80,15 @@ studentName.value = student.name;
     let studentId = id;
     let studentName = document.getElementById("studentName").value;
     let imageurl = document.getElementById("imageUrl").value;
-    console.log(studentId, studentName, imageurl);
+    let studentDescription = document.getElementById("studentDescription").value;
+    console.log(studentId, studentName, imageurl, studentDescription);
     $.ajax({
       url: `http://localhost:3100/updateStudent/${studentId}`,
       type: "PATCH",
       data: {
         name: studentName,
         image_url: imageurl,
+        description: studentDescription
       },
       success: function (data) {
         console.log(data);
@@ -154,6 +160,7 @@ let renderStudents = (students) => {
       <div class="result-container" id="${item._id}">
       <img src="${item.image_url}" alt="${item.name}">
       <h3>${item.name}</h3>
+      <p>${item.description}</p>
       <i class="fa-solid fa-trash-can delete-button"></i>
       <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
       </div>

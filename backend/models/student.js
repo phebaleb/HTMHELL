@@ -8,6 +8,7 @@ const studentSchema = new mongoose.Schema(
 // every scema requires an ID 
 _id : mongoose.Schema.Types.ObjectId,
 name: String,
+description: String,
 image_url: String
 }, 
 {
