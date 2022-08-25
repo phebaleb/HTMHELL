@@ -14,7 +14,7 @@ let showAllStudents = () => {
     // your success function contains a object which can be named anything
     success: (students) => {
       console.log(students);
-      renderStudents(students);
+      displayStudents(students);
     },
     error: (error) => {
       console.log(error);
@@ -68,13 +68,13 @@ handleEditFunctionality = (student, id) => {
   let imagePreview = document.getElementById("image-preview");
   let imageurl = document.getElementById("imageUrl");
   let studentDescription = document.getElementById("studentDescription");
-studentName.value = student.name;
-studentTitle.value = student.title;
+  studentName.value = student.name;
+  studentTitle.value = student.title;
 
   imageurl.value = student.image_url;
-  studentDescription.value = student.description
+  studentDescription.value = student.description;
   imagePreview.innerHTML = `
-  <img src="${student.image_url}" alt="${studentName}" >`
+  <img src="${student.image_url}" alt="${studentName}" >`;
   // console.log(`the console log was passed in through this id ${id}`)
   // ================================
   //        EDIT CLICK LISTENER
@@ -86,7 +86,8 @@ studentTitle.value = student.title;
     let studentName = document.getElementById("studentName").value;
     let studentTitle = document.getElementById("studentTitle").value;
     let imageurl = document.getElementById("imageUrl").value;
-    let studentDescription = document.getElementById("studentDescription").value;
+    let studentDescription =
+      document.getElementById("studentDescription").value;
     console.log(studentId, studentName, imageurl, studentDescription);
     $.ajax({
       url: `http://localhost:3100/updateStudent/${studentId}`,
@@ -95,13 +96,13 @@ studentTitle.value = student.title;
         name: studentName,
         title: studentTitle,
         image_url: imageurl,
-        description: studentDescription
+        description: studentDescription,
       },
       success: function (data) {
         console.log(data);
         showAllStudents();
-        $('#editModal').modal('hide');
-        $('#updateStudent').off('click');
+        $("#editModal").modal("hide");
+        $("#updateStudent").off("click");
       },
       error: function () {
         console.log("error: cannot update");
@@ -113,7 +114,6 @@ studentTitle.value = student.title;
 populateEditModal = (studentId) => {
   console.log(studentId);
   $.ajax({
-
     url: `http://localhost:3100/student/${studentId}`,
     type: "GET",
     success: (studentData) => {
@@ -159,39 +159,30 @@ let collectEditButtons = () => {
   }
 };
 
-let renderStudents = (students) => {
+let displayStudents = (students) => {
   console.log("The render student function is running");
   result.innerHTML = "";
   students.forEach((item) => {
-    if (sessionStorage.userID) {
       result.innerHTML += `
       <div class="result-container" id="${item._id}">
+      <div class="img-container">
       <img src="${item.image_url}" alt="${item.name}">
-      <h2>${item.name}</h2>
-      <h4>${item.title}</h4>
-      <p>${item.description}</p>
-
-      <i class="fa-solid fa-trash-can delete-button"></i>
-      <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+      <div class="overlay"><h1>${item.name}</h1></div>
+      </div>
+      <div class="short-bio">
+      <p><span class="bold">${item.name}</span> - ${item.title}</p>
+      </div>
       </div>
       `;
-      //if the user isn't logged in
-    } else {
-      result.innerHTML += `
-      <div class="result-container" id="${item._id}">
-      <img src="${item.image_url}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>$${item.price}</p> 
-      </div>
-      `;
-    }
-  });
-  // all students should be rendered now
+    })
+      // all students should be displayed now
   // and now we can collect the delete buttons
-  collectDeleteButtons();
+  // collectDeleteButtons();
   // collect edit buttons
-  collectEditButtons();
-};
+  // collectEditButtons();
+  };
+
+
 
 // start app
 showAllStudents();
@@ -203,21 +194,23 @@ let checkLogin = () => {
     // console.log("You're logged in")
     // console.log(sessionStorage.userName)
     navContent = `
-    <span id="username">${sessionStorage.userName}</span>
-    <span id="dp" style="background-image: url('${sessionStorage.profileImg}')"></span>
-    <a id="sign-out-button" href="#">Sign out</a>
-    `
+    <ul>
+    <li><h2 class="black">${sessionStorage.userName}</h2></li>
+    <li><a id="sign-out-button" href="#">Sign out</a></li>
+    `;
   }
   // if they're not logged in
   else {
     navContent = `
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
+    <ul>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    </ul>
     `;
   }
   // render our logged in elements
   userDetails.innerHTML = navContent;
-}
+};
 
 checkLogin();
 
@@ -225,11 +218,30 @@ checkLogin();
 const signoutBtn = document.getElementById("sign-out-button");
 
 let logOut = () => {
-  console.log("You've logged out")
+  console.log("You've logged out");
   sessionStorage.clear();
   window.location.reload();
-}
+};
 
 if (sessionStorage.userID) {
   signoutBtn.onclick = () => logOut();
+}
+
+// add student button
+const addStudent = document.getElementById('addStudentBtn');
+addStudent.onclick = () => {
+
 };
+
+const menuBtn = document.getElementById('nav-toggle-btn');
+const title = document.getElementById('absolute');
+menuBtn.onclick = () => {
+  console.log("You clicked the menu")
+  title.classList.toggle("black");
+};
+
+
+// let displayStudentArray = document.getElementsByClassName("result-container");
+//   // this will loop over every result div
+//   for (let i = 0; i < displayStudentArray.length; i++) {
+//     if (displayStudentArray[i] % 2 == 0) {
