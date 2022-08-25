@@ -68,8 +68,8 @@ handleEditFunctionality = (student, id) => {
   let imagePreview = document.getElementById("image-preview");
   let imageurl = document.getElementById("imageUrl");
   let studentDescription = document.getElementById("studentDescription");
-studentName.value = student.name;
-studentTitle.value = student.title;
+  studentName.value = student.name;
+  studentTitle.value = student.title;
 
   imageurl.value = student.image_url;
   studentDescription.value = student.description
@@ -180,8 +180,9 @@ let renderStudents = (students) => {
       result.innerHTML += `
       <div class="result-container" id="${item._id}">
       <img src="${item.image_url}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>$${item.price}</p> 
+      <h2>${item.name}</h2>
+      <h4>${item.title}</h4>
+      <p>${item.description}</p>
       </div>
       `;
     }
