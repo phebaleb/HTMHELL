@@ -30,7 +30,16 @@
     font-style: normal;
 }
 
-$header-font: "TTTravelsBold";
+@font-face {
+    font-family: "TTTravelsBlack";
+    src: url('../fonts/tt_travels_next_black-webfont.woff2'),
+         url('../fonts/tt_travels_next_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$header-font: "TTTravelsBlack";
+$subheader-font: "TTTravelsBold";
 $title-font: "FoundersGroteskBold";
 $name-font: "FoundersGroteskSemibold";
 $description-font: "FoundersGroteskRegular";
