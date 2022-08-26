@@ -1,30 +1,54 @@
 @import 'variables';
 
-body{
+body {
     background-color: white;
 }
 
-img{
+img {
     width: 100px;
     height: auto;
 }
 
-h1{
+h1 {
     font-family: $header-font;
     color: $main-colour;
 }
 
-p{
+p {
     font-family: $description-font;
     color: $main-colour;
 }
 
-h4{
+h4 {
     font-family: $name-font;
     color: $main-colour;
 }
 
-h2{
+h2 {
     font-family: $title-font;
     color: $main-colour;
+}
+
+.projectModal {
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border-top: 3px solid $secondary-colour;
+    border-right: 3px solid $main-colour;
+    border-bottom: 3px solid $main-colour;
+    border-left: 3px solid $secondary-colour;
+    border-radius: 10px;
+    box-shadow: 5px 5px 200px black;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.projectModal.active {
+    visibility: visible;
+    opacity: 1;
+    transition: all .3s ease;
 }

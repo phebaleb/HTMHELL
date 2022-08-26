@@ -210,3 +210,28 @@ app.get('/student/:id', (req, res) => {
     }
   })
 })
+
+// ============================
+//      PROJECT MODAL
+// ============================
+
+app.patch("/resultImage/:id", (req, res) => {
+  const idParam = req.params.id;
+  Student.findById(idParam, (err, student) => {
+    const updatedStudent = {
+      name: req.body.name,
+      title: req.body.title,
+      description: req.body.description,
+      image_url: req.body.image_url,
+    };
+    Student.updateOne(
+      {
+        _id: idParam,
+      },
+      updatedStudent).
+      then((result) => {
+        res.send(result);
+      })
+      .catch((err) => res.send(err));
+  });
+});
