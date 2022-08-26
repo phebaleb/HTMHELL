@@ -172,6 +172,16 @@ let displayStudents = (students) => {
       <div class="short-bio">
       <p><span class="bold">${item.name}</span> - ${item.title}</p>
       </div>
+
+      `;
+      //if the user isn't logged in
+    } else {
+      result.innerHTML += `
+      <div class="result-container" id="${item._id}">
+      <img src="${item.image_url}" alt="${item.name}">
+      <h2>${item.name}</h2>
+      <h4>${item.title}</h4>
+      <p>${item.description}</p>
       </div>
       `;
     })
