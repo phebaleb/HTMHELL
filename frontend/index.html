@@ -8,37 +8,61 @@
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
   <!-- bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <!-- -- -->
+
+    <!-- AOS transitions -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <title>Student Work Formative</title>
 </head>
 
 <body>
+  <div class="padding-top"></div>
 
-  <nav>
-    <a href="index.html"></a>
-    <div id="user-details"></div>
-  </nav>
-  <h1>Yoobee Student Portfolios</h1>
-  <div id="tools">
-    <!-- forms are way we can wrap inputs -->
-    <!-- if we dont add js void, the page will refresh when you submit the form -->
-    <form id="add-student-form" action="javascript:void(0)">
-      <label for="name-input">Name: </label>
-      <input id="name-input" name="name-input" type="text">
-      <label for="title-input">Title: </label>
-      <input id="title-input" name="title-input" type="text">
-      <label for="description-input">Description: </label>
-      <input id="description-input" name="description-input" type="text">
-      <label for="image-url-input">Image URL</label>
-      <input id="image-url-input" name="image-url-input" type="text">
-      <button id="student-button">Go</button>
-    </form>
-  </div>
-  <div id="result"></div>
+  <header>
+    <div id="logo">
+      <h1 id="absolute">YOOBEE STUDENT WORK</h1>
+    </div>
+    <div id="menu">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label" id="nav-toggle-btn">
+      <span></span>
+    </label>
+    <nav>
+<div id="user-details"></div>
+    </nav>
+    </div>
+  </header>
+    <div id="tools">
+        <!-- forms are way we can wrap inputs -->
+        <!-- if we dont add js void, the page will refresh when you submit the form -->
+        <form id="add-student-form" action="javascript:void(0)">
+            <label for="name-input">Name: </label>
+            <input id="name-input" name="name-input" type="text">
+            <label for="title-input">Title: </label>
+            <input id="title-input" name="title-input" type="text">
+            <label for="description-input">Description: </label>
+            <input id="description-input" name="description-input" type="text">
+            <label for="image-url-input">Image URL</label>
+            <input id="image-url-input" name="image-url-input" type="text">
+            <button id="student-button">Go</button>
+        </form>
+    </div>
+    <div id="page-info">
+      <p>A portfolio to showcase the work the students have made at Yoobee Colleges <span class="bold">in UX & UI Design</span></p>
+    </div>
+    <div id="work-title">
+      <h1>WORK</h1>
+    </div>
+    <div id="result"></div>
+    <div id="add-student">
+      <button type="button" id="addStudentBtn" data-toggle="modal" data-target="#addStudentModal">Add Student</button>
+
+    </div>
 
   <!-- Modal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,21 +79,27 @@
             <!-- <label for="productId">Enter Product Id:</label>
                 <input type="text" name="inputID" id="productId">
                 <br><br> -->
-            <label for="studentTitle">Enter title of the project</label>
-            <input type="text" id="studentTitle" name="studentTitle">
-            <br><br>
-
-            <label for="studentDescription">Enter name of the student</label>
-            <input type="text" id="studentDescription" name="studentDescription">
-            <br><br>
-
-            <label for="imageUrl">Enter image url of the student</label>
-            <input type="text" id="imageUrl" name="imageUrl">
-            <br><br>
-          </form>
+                
+                <label for="studentTitle">Enter name of the student:</label>
+                <input type="text" id="studentName" name="studentName">
+                <br><br>
+    
+    
+                <label for="studentTitle">Enter title of the project:</label>
+                <input type="text" id="studentTitle" name="studentTitle">
+                <br><br>
+    
+                <label for="studentDescription">Enter the description of the project:</label>
+                <input type="text" id="studentDescription" name="studentDescription">
+                <br><br>
+    
+                <label for="imageUrl">Enter image url of the student:</label>
+                <input type="text" id="imageUrl" name="imageUrl">
+                <br><br>
+            </form>
         </div>
         <div class="modal-footer">
-          <button id="updateStudent" name="studentButton" type="submit" class="btn btn-primary">Update Product</button>
+          <button id="updateStudent" name="studentButton" type="submit" class="btn btn-primary" >Update Product</button>
         </div>
       </div>
     </div>
@@ -93,6 +123,31 @@
     </div>
 
   </footer>
+
+        <!-- Add Student modal -->
+        <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+  
   <!-- jquery -->
   <script src="https://kit.fontawesome.com/ab86417da5.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -101,6 +156,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
+    <!-- AOS transitions -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="js/script.js"></script>
 </body>
 
