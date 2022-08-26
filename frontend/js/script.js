@@ -165,12 +165,14 @@ let displayStudents = (students) => {
   students.forEach((item) => {
       result.innerHTML += `
       <div class="result-container" id="${item._id}">
+
       <div class="img-container">
-      <img src="${item.image_url}" alt="${item.name}">
+      <img class="open-image" src="${item.image_url}" alt="${item.name}">
       <div class="overlay"><h1>${item.name}</h1></div>
       </div>
       <div class="short-bio">
       <p><span class="bold">${item.name}</span> - ${item.title}</p>
+
       </div>
 
       `;
@@ -178,20 +180,22 @@ let displayStudents = (students) => {
     } else {
       result.innerHTML += `
       <div class="result-container" id="${item._id}">
-      <img src="${item.image_url}" alt="${item.name}">
+      <img class="open-image" src="${item.image_url}" alt="${item.name}">
+
       <h2>${item.name}</h2>
       <h4>${item.title}</h4>
       <p>${item.description}</p>
       </div>
       `;
+
     })
       // all students should be displayed now
   // and now we can collect the delete buttons
   // collectDeleteButtons();
   // collect edit buttons
   // collectEditButtons();
+    collectOpenImages();
   };
-
 
 
 // start app
@@ -201,12 +205,11 @@ let checkLogin = () => {
   const userDetails = document.getElementById("user-details");
   let navContent;
   if (sessionStorage.userID) {
-    // console.log("You're logged in")
-    // console.log(sessionStorage.userName)
     navContent = `
     <ul>
     <li><h2 class="black">${sessionStorage.userName}</h2></li>
     <li><a id="sign-out-button" href="#">Sign out</a></li>
+    </ul>
     `;
   }
   // if they're not logged in
@@ -237,6 +240,59 @@ if (sessionStorage.userID) {
   signoutBtn.onclick = () => logOut();
 }
 
+// PROJECT MODAL ------------------------------------------------------------
+
+const projectModal = document.getElementById('projectModal');
+// const openImage = document.getElementsByClassName('open-image');
+
+let openModal = (id) => {
+  console.log('Clicked open modal')
+  projectModal.classList.toggle("active");
+}
+
+// this function will handle all our edits
+let collectOpenImages = () => {
+  console.log('Collecting images')
+  // this will return an Array, but it's a slightly different one
+  // it returns HTML "nodes" instead
+  // we'll have use a regular loop to loop over these
+  let openImagesArray = document.getElementsByClassName("open-image");
+  // this will loop over every delete button
+  for (let i = 0; i < openImagesArray.length; i++) {
+    openImagesArray[i].onclick = () => {
+      let currentId = openImagesArray[i].parentNode.id;
+      console.log(currentId);
+      // delete student based on the id
+      openModal(currentId);
+    };
+  }
+};
+
+let projectModalContent = (students) => {
+  console.log("The project modal is running");
+  projectModal.innerHTML = "";
+  students.forEach((item) => {
+    projectModal.innerHTML += `
+      <div class="left-container" id="${item._id}">
+      <img src="${item.image_url}" alt="${item.name}">
+      </div>
+      <div>
+      <h2>${item.name}</h2>
+      <h4>${item.title}</h4>
+      <p>${item.description}</p>
+     </div>
+
+      <i class="fa-solid fa-trash-can delete-button"></i>
+      <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+      </div>
+      `;
+  });
+  // all students should be rendered now
+  // and now we can collect the delete buttons
+  collectDeleteButtons();
+  // collect edit buttons
+  collectEditButtons();
+
 // add student button
 const addStudent = document.getElementById('addStudentBtn');
 addStudent.onclick = () => {
@@ -248,6 +304,7 @@ const title = document.getElementById('absolute');
 menuBtn.onclick = () => {
   console.log("You clicked the menu")
   title.classList.toggle("black");
+
 };
 
 

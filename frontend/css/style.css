@@ -69,6 +69,28 @@ h2 {
   color: #5B3EDA;
 }
 
+.projectModal {
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  border-top: 3px solid #a63eda;
+  border-right: 3px solid #5B3EDA;
+  border-bottom: 3px solid #5B3EDA;
+  border-left: 3px solid #a63eda;
+  border-radius: 10px;
+  box-shadow: 5px 5px 200px black;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.projectModal.active {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease;
 
 #tools-container {
   height: 80vh;

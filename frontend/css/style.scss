@@ -12,6 +12,8 @@ body{
   margin: 0;
 }
 
+img{
+width: 100%;
     height: auto;
 }
 
@@ -460,6 +462,31 @@ img{
   button{
     background-color: white;
     color: $main-colour;
+}
+
+.projectModal {
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border-top: 3px solid $secondary-colour;
+    border-right: 3px solid $main-colour;
+    border-bottom: 3px solid $main-colour;
+    border-left: 3px solid $secondary-colour;
+    border-radius: 10px;
+    box-shadow: 5px 5px 200px black;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.projectModal.active {
+    visibility: visible;
+    opacity: 1;
+    transition: all .3s ease;
+}
     border: solid 1px $main-colour;
     display: inline-block;
     text-decoration: none;

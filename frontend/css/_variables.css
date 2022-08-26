@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "FoundersGroteskBold";
+  src: url("../fonts/foundersgrotesk-bold-webfont.woff2"), url("../fonts/foundersgrotesk-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FoundersGroteskSemibold";
+  src: url("../fonts/foundersgrotesk-semibold-webfont.woff2"), url("../fonts/foundersgrotesk-semibold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FoundersGroteskRegular";
+  src: url("../fonts/foundersgrotesk-regular-webfont.woff2"), url("../fonts/foundersgrotesk-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTTravelsBold";
+  src: url("../fonts/tt_travels_next_bold-webfont.woff2"), url("../fonts/tt_travels_next_bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
