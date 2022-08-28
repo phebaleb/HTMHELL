@@ -39,21 +39,6 @@
     </nav>
     </div>
   </header>
-    <div id="tools">
-        <!-- forms are way we can wrap inputs -->
-        <!-- if we dont add js void, the page will refresh when you submit the form -->
-        <form id="add-student-form" action="javascript:void(0)">
-            <label for="name-input">Name: </label>
-            <input id="name-input" name="name-input" type="text">
-            <label for="title-input">Title: </label>
-            <input id="title-input" name="title-input" type="text">
-            <label for="description-input">Description: </label>
-            <input id="description-input" name="description-input" type="text">
-            <label for="image-url-input">Image URL</label>
-            <input id="image-url-input" name="image-url-input" type="text">
-            <button id="student-button">Go</button>
-        </form>
-    </div>
     <div id="page-info">
       <p>A portfolio to showcase the work <br> the students have made at Yoobee <br> Colleges <span class="bold">in UX & UI Design</span></p>
     </div>
@@ -62,12 +47,29 @@
     </div>
     <div id="result"></div>
     <div id="add-student">
-      <button type="button" id="addStudentBtn" data-toggle="modal" data-target="#addStudentModal">Add Student</button>
+      <button type="button" id="addStudentBtn" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</button>
 
     </div>
 
   <!-- Project Modal -->
-  <div id="projectModal" class="projectModal"></div>
+  <div id="projectModal" class="projectModal">
+    <div class="student-work-container">
+      <div class="student-work-grid">
+        <i id="close-modal" class="fa-solid fa-x"></i>
+        <div class="student-name"><h1>Joji Ratuva</h1>
+          <div class="name-underline"></div>
+        </div>
+        <div class="student-project"><h2>Phillip Warp</h2></div>
+        <div class="student-description"><p>The application should have functionality to show/hide UI components based on user interaction. For example, it may have multiple screens or use a modal dialog.</p>
+          <div class="edit-tools"><button class="delete-button">Delete</button>
+            <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+          </div>
+        </div>
+        <div class="student-image">
+        <img src="https://drive.google.com/uc?export=view&id=15AHuVOHntvZQlwDgftpmFZlIyltkkNXE" alt="">
+      </div>
+    </div>
+  </div>
 
   <!-- Edit Modal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,6 +113,7 @@
     </div>
   </div>
 </div>
+</div>
   <footer>
     <div class="footer-section" id="footer-header">
       <h3 id="purple" class="text">Yoobee</h3>
@@ -133,21 +136,31 @@
   </footer>
 
         <!-- Add Student modal -->
-        <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="addStudentModalLabel">Add Student</h5>
               </div>
-              <div class="modal-body">
-                ...
+              <div id="add-student-body" class="modal-body">
+                <div id="tools">
+                  <!-- forms are way we can wrap inputs -->
+                  <!-- if we dont add js void, the page will refresh when you submit the form -->
+                  <form id="add-student-form" action="javascript:void(0)">
+                      <label for="name-input">Name: </label>
+                      <input id="name-input" name="name-input" type="text">
+                      <label for="title-input">Title: </label>
+                      <input id="title-input" name="title-input" type="text">
+                      <label for="description-input">Description: </label>
+                      <input id="description-input" name="description-input" type="text">
+                      <label for="image-url-input">Image URL</label>
+                      <input id="image-url-input" name="image-url-input" type="text">
+                  </form>
+              </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" id="close-add-student" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="student-button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
