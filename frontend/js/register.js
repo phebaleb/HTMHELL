@@ -1,6 +1,6 @@
 const server = 'http://localhost:3100';
 
-const signupBtn = document.getElementById("signup-button");
+const signupBtn = document.getElementById("signup-login-button");
 const usernameInput = document.getElementById("name-input");
 const passwordInput = document.getElementById("password-input");
 const profileImgInput = document.getElementById("image-url-input");
