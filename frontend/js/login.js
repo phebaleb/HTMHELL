@@ -6,7 +6,7 @@
 // <button id="login-button">Login</button>
 
 const server = "http://localhost:3100";
-const loginBtn = document.getElementById("login-button");
+const loginBtn = document.getElementById("signup-login-button");
 const nameInput = document.getElementById("name-input");
 const passwordInput = document.getElementById("password-input");
 
