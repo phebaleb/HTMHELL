@@ -355,8 +355,7 @@ nav a {
   mix-blend-mode: normal;
   height: 100%;
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   transition: all 0.3s ease;
   mix-blend-mode: multiply;
   background-color: #5B3EDA;
@@ -405,8 +404,7 @@ nav a {
   grid-row: 1/2;
 }
 .result-container:nth-child(2) img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .result-container:nth-child(3) {
@@ -434,8 +432,7 @@ nav a {
   grid-row: 4/5;
 }
 .result-container:nth-child(7) img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .result-container:nth-child(8) {
@@ -586,8 +583,7 @@ button:hover {
 .student-image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   background-color: #5B3EDA;
 }
 

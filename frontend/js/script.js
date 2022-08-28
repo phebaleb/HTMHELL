@@ -1,6 +1,4 @@
-console.log("hello");
 const go = document.getElementById("student-button");
-
 // declare all our inputs
 const nameInput = document.getElementById("name-input");
 const titleInput = document.getElementById("title-input");
@@ -76,6 +74,7 @@ handleEditFunctionality = (student, id) => {
   imagePreview.innerHTML = `
   <img src="${student.image_url}" alt="${studentName}" >`;
   // console.log(`the console log was passed in through this id ${id}`)
+
   // ================================
   //        EDIT CLICK LISTENER
   // ================================
@@ -110,6 +109,16 @@ handleEditFunctionality = (student, id) => {
     });
   });
 };
+
+$("#student-button").click(function () {
+  event.preventDefault();
+  $("#addStudentModal").modal("hide");
+});
+
+$("#close-add-student").click(function () {
+  event.preventDefault();
+  $("#addStudentModal").modal("hide");
+});
 
 populateEditModal = (studentId) => {
   console.log(studentId);
@@ -155,6 +164,7 @@ let collectEditButtons = () => {
       let currentId = editButtonsArray[i].parentNode.id;
       // delete student based on the id
       populateEditModal(currentId);
+      console.log(currentId);
     };
   }
 };
@@ -194,7 +204,7 @@ let checkLogin = () => {
   if (sessionStorage.userID) {
     navContent = `
     <ul>
-    <li><h2 class="black">${sessionStorage.userName}</h2></li>
+    <li><h2 id="font-size" class="black">${sessionStorage.userName}</h2></li>
     <li><a id="sign-out-button" href="#">Sign out</a></li>
     </ul>
     `;
@@ -228,7 +238,7 @@ if (sessionStorage.userID) {
 }
 
 // PROJECT MODAL ------------------------------------------------------------
-
+const closeModalBtn = document.getElementById("close-modal");
 const projectModal = document.getElementById("projectModal");
 // const openImage = document.getElementsByClassName('open-image');
 
@@ -236,6 +246,10 @@ let openModal = (id) => {
   console.log("Clicked open modal");
   projectModal.classList.toggle("active");
   console.log(id);
+};
+
+closeModalBtn.onclick = () => {
+  projectModal.classList.toggle("active");
 };
 
 // this function will handle all our edits
@@ -250,11 +264,14 @@ let collectOpenImages = () => {
     openImagesArray[i].onclick = () => {
       let currentId = openImagesArray[i].parentNode.id;
       console.log(currentId);
+      console.log("This has passed the currentId log");
       // delete student based on the id
       openModal(currentId);
     };
   }
 };
+
+// Content that will appear in the student work modal
 
 let projectModalContent = (students) => {
   console.log("The project modal is running");
@@ -282,18 +299,13 @@ let projectModalContent = (students) => {
   collectEditButtons();
 };
 
-// add student button
+//---------------------- ADD STUDENT BUTTON
 const addStudent = document.getElementById("addStudentBtn");
-addStudent.onclick = () => {};
 
+//----------------- OPEN NAV MODAL FUNCTION
 const menuBtn = document.getElementById("nav-toggle-btn");
 const title = document.getElementById("absolute");
 menuBtn.onclick = () => {
   console.log("You clicked the menu");
   title.classList.toggle("black");
 };
-
-// let displayStudentArray = document.getElementsByClassName("result-container");
-//   // this will loop over every result div
-//   for (let i = 0; i < displayStudentArray.length; i++) {
-//     if (displayStudentArray[i] % 2 == 0) {
