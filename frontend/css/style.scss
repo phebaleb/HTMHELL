@@ -414,8 +414,8 @@ nav li {
   margin: auto;
   padding: 1em;
   font-size: 2em;
-
 }
+
 
 a:hover {
   color: white;
@@ -703,24 +703,24 @@ button:hover {
   background-color: $main-colour;
 }
 
-.projectModal {
-  background-color: white;
-  width: 80%;
-  height: 80%;
-  position: fixed;
-  top: 10%;
-  left: 10%;
-  border-top: 3px solid $secondary-colour;
-  border-right: 3px solid $main-colour;
-  border-bottom: 3px solid $main-colour;
-  border-left: 3px solid $secondary-colour;
-  border-radius: 10px;
-  box-shadow: 5px 5px 200px black;
-  visibility: hidden;
-  opacity: 0;
-  padding: 0.5em 1.2em 0.7em 1.2em;
-  font-size: 1.5em;
-  transition: all .3s ease;
+.projectModal{
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    border-top: 3px solid $secondary-colour;
+    border-right: 3px solid $main-colour;
+    border-bottom: 3px solid $main-colour;
+    border-left: 3px solid $secondary-colour;
+    border-radius: 10px;
+    box-shadow: 5px 5px 200px black;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0.5em 1.2em 0.7em 1.2em;
+    font-size: 1.5em;
+    transition: all .3s ease;
 }
 
 
@@ -771,13 +771,14 @@ button:hover {
   grid-row: 2/3;
 }
 
-.student-description {
-  grid-column: 1/2;
-  grid-row: 3/5;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  .student-description{
+    grid-column: 1/2;
+    grid-row: 3/5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: .8em;
+  }
 
 .student-image {
   grid-column: 2/3;
@@ -821,8 +822,9 @@ button:hover {
 
 .edit-tools {
   font-size: .6em;
-
-  button {
+  position: absolute;
+  bottom: 17px;
+  button{
     margin-right: 10px;
     font-family: $description-font;
   }

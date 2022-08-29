@@ -734,6 +734,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 0.8em;
 }
 
 .student-image {
@@ -777,6 +778,8 @@ button:hover {
 
 .edit-tools {
   font-size: 0.6em;
+  position: absolute;
+  bottom: 17px;
 }
 .edit-tools button {
   margin-right: 10px;
