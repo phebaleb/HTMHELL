@@ -9,6 +9,7 @@ const server = "http://localhost:3100";
 const loginBtn = document.getElementById("signup-login-button");
 const nameInput = document.getElementById("name-input");
 const passwordInput = document.getElementById("password-input");
+const registerAlert = document.getElementById("register-alert");
 
 loginBtn.onclick = () => {
     $.ajax({
@@ -20,9 +21,14 @@ loginBtn.onclick = () => {
         },
         success: (user) => {
             if (user == 'user not found') {
-                console.log("User is not found please register")
+                registerAlert.innerHTML = `
+                <h2 id="register-alert-text">User is not found please register</h2>
+                `;
             } else if (user == 'not authorised') {
-                console.log("Incorrect password")
+                registerAlert.innerHTML = `
+                <h2 id="register-alert-text">Incorrect Password</h2>
+                `;
+
             } else {
                 console.log("awesome you are logged in successfully")
                 console.log(user);

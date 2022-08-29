@@ -22,7 +22,7 @@
     <a href="index.html">Home</a>
     <a href="login.html">Login</a>
   </nav>
-  <div id="tools-container">
+  <div id="signup-login-tools-container">
     <div id="tools">
       <div id="signup-login-title">
         <h1>Sign up to see Yoobee Student Portfolios</h1>
@@ -30,14 +30,18 @@
       </div>
       <br>
       <form id="signup-login-form" action="javascript:void(0);">
-        <label for="name-input">Name: </label>
-        <input id="name-input" name="name-input" type="text">
-        <label for="password-input">Password: </label>
-        <input id="password-input" name="password-input" type="password">
-        <label for="password-input">Profile Image URL </label>
-        <input id="image-url-input" name="image-url-input" type="text">
+        <label class="signup-login-label" for="name-input">Name: </label>
+        <input class="signup-login-input" id="name-input" name="name-input" type="text" placeholder="Name...">
+        <label class="signup-login-label" for="password-input">Password: </label>
+        <input class="signup-login-input" id="password-input" name="password-input" type="password"
+          placeholder="Password...">
+        <label class="signup-login-label" for="password-input">Profile Image URL </label>
+        <input class="signup-login-input" id="image-url-input" name="image-url-input" type="text"
+          placeholder="http://image...">
         <button id="signup-login-button">Register</button>
       </form>
+      <div id="register-alert"></div>
+      <a class="signup-login-redirect" href="login.html">Already have an account? Login Here</a>
     </div>
   </div>
   <footer>
@@ -47,15 +51,21 @@
       <h3 class="text">Portfolios.</h3>
     </div>
     <div class="footer-section" id="social-links">
-      <i class="bi bi-instagram icon"></i>
-      <i class="bi bi-facebook icon"></i>
-      <i class="bi bi-twitter icon"></i>
+      <a href=""><i class="bi bi-instagram icon"></i></a>
+      <a href=""><i class="bi bi-facebook icon"></i></a>
+      <a href=""><i class="bi bi-twitter icon"></i></a>
     </div>
     <div class="footer-section" id="contact-links">
       <h3 id="contact-title">Contact</h3>
-      <p class="contact-link">Email</p>
-      <p class="contact-link">Phone</p>
-      <p class="contact-link">Address</p>
+      <a class="contact-link" href="">
+        <p>Email</p>
+      </a>
+      <a class="contact-link" href="">
+        <p>Phone</p>
+      </a>
+      <a class="contact-link" href="">
+        <p>Address</p>
+      </a>
     </div>
 
   </footer>

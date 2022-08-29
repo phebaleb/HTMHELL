@@ -52,6 +52,13 @@ h2 {
 //    SIGN UP & LOGIN STYLES
 // ============================
 
+#signup-login-tools-container {
+  height: 100vh;
+  background-image: url("../img/gggrain.svg");
+  // background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #signup-login-title {
   display: flex;
   justify-content: center;
@@ -59,19 +66,23 @@ h2 {
   align-items: center;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 75px;
+  padding-top: 10px;
+  border-top: 5px solid $main-colour;
 }
 
-label {
+.signup-login-label {
   font-family: $title-font;
   color: $secondary-colour;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 20px
 }
 
-input {
+.signup-login-input {
   margin-top: 10px;
   height: 5vh;
+  font-size: 25px;
+  font-family: $description-font;
 }
 
 #signup-login-form {
@@ -92,7 +103,7 @@ input {
   border-radius: 0;
   transition: all .3s ease;
   cursor: pointer;
-  padding: 0.6em 0.7em 0.3em 0.7em;
+  padding: 0.6em 1em 0.3em 1em;
   line-height: 1.2;
   overflow: hidden;
   font-family: $description-font;
@@ -103,6 +114,30 @@ input {
   transition: all .3s ease;
   color: white;
   background-color: $main-colour;
+}
+
+.signup-login-redirect {
+  text-decoration: none;
+  // width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  font-family: $title-font;
+  color: $secondary-colour;
+  transition: all 0.3s ease;
+}
+
+.signup-login-redirect:hover {
+  color: $main-colour;
+  font-size: 1.2em;
+}
+
+#register-alert {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  font-family: $title-font;
+  color: $secondary-colour;
 }
 
 // =================================
@@ -118,10 +153,9 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 35px;
   background: black;
   width: 100%;
-  height: 200px;
+  height: auto;
   padding: 30px 100px 30px 100px;
 }
 
@@ -192,6 +226,39 @@ footer {
 // ========================
 //    FOOTER STYLES ENDS
 // ========================
+
+// =================================
+//    FOOTER STYLES MEDIA QUERIES
+// =================================
+
+@media only screen and (max-width: 800px) {
+  footer {
+    flex-direction: column;
+
+    #contact-links {
+      justify-content: center;
+    }
+
+    .footer-section {
+      margin: 30px;
+    }
+
+    #footer-header {
+      border-left: 5px solid white;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      // grid-template-rows: 1fr 1fr 1fr;
+      // grid-template-columns: 100%;
+      justify-content: center;
+      width: 160px;
+    }
+  }
+}
+
+// ======================================
+//    FOOTER STYLES MEDIA QUERIES ENDS
+// ======================================
 
 
 header {
@@ -333,22 +400,21 @@ nav {
   justify-content: center;
   transition: visibility 0s 150ms, opacity 150ms linear;
 }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-  }
 
-  #font-size{
-    font-size: 2em;
-  }
-  
-  nav li {
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+#font-size {
+  font-size: 2em;
+}
+
+nav li {
   margin: auto;
   padding: 1em;
   font-size: 2em;
-  
-  }
+
 }
 
 a:hover {
@@ -373,16 +439,16 @@ nav a {
   padding-top: 220px;
 }
 
-  #add-student-form{
-    display: flex;
-    flex-direction: column;
-  }
+#add-student-form {
+  display: flex;
+  flex-direction: column;
+}
 
 
 
-  .black{
-    color: black;
-  }
+.black {
+  color: black;
+}
 
 .black {
   color: black;
@@ -542,31 +608,32 @@ nav a {
   grid-row: 6/7;
 }
 
-  .result-container:nth-child(13) {
-    grid-column: 1/3;
-    grid-row: 7/8;
-  }
+.result-container:nth-child(13) {
+  grid-column: 1/3;
+  grid-row: 7/8;
+}
 
-  .result-container:nth-child(14) {
-    grid-column: 3/6;
-    grid-row: 7/8;
-  }
+.result-container:nth-child(14) {
+  grid-column: 3/6;
+  grid-row: 7/8;
+}
 
-  .result-container:nth-child(15) {
-    grid-column: 1/4;
-    grid-row: 8/9;
-  }
+.result-container:nth-child(15) {
+  grid-column: 1/4;
+  grid-row: 8/9;
+}
 
-  .result-container:nth-child(16) {
-    grid-column: 4/6;
-    grid-row: 8/9;
-  }
-  #add-student{
-    padding-top: 30px;
-    padding-bottom: 100px;
-    display: flex;
-    justify-content: center;
-  }
+.result-container:nth-child(16) {
+  grid-column: 4/6;
+  grid-row: 8/9;
+}
+
+#add-student {
+  padding-top: 30px;
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
 
 
 #add-student {
@@ -636,133 +703,137 @@ button:hover {
   background-color: $main-colour;
 }
 
-    background-color: white;
-    width: 80%;
-    height: 80%;
-    position: fixed;
-    top: 10%;
-    left: 10%;
-    border-top: 3px solid $secondary-colour;
-    border-right: 3px solid $main-colour;
-    border-bottom: 3px solid $main-colour;
-    border-left: 3px solid $secondary-colour;
-    border-radius: 10px;
-    box-shadow: 5px 5px 200px black;
-    visibility: hidden;
-    opacity: 0;
-    padding: 0.5em 1.2em 0.7em 1.2em;
-    font-size: 1.5em;
-    transition: all .3s ease;
+.projectModal {
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  border-top: 3px solid $secondary-colour;
+  border-right: 3px solid $main-colour;
+  border-bottom: 3px solid $main-colour;
+  border-left: 3px solid $secondary-colour;
+  border-radius: 10px;
+  box-shadow: 5px 5px 200px black;
+  visibility: hidden;
+  opacity: 0;
+  padding: 0.5em 1.2em 0.7em 1.2em;
+  font-size: 1.5em;
+  transition: all .3s ease;
 }
+
 
 .projectModal.active {
-    visibility: visible;
-    opacity: 1;
-    transition: all .3s ease;
-z-index: 100;
-    border: solid 1px $main-colour;
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 0;
-    transition: all .3s ease;
-    cursor: pointer;
-    line-height: 1.2;
-    overflow: hidden;
-    font-family: $description-font;
-  }
-
-  button:hover{
-    transition: all .3s ease;
-    color: white;
-    background-color: $main-colour;
-  }
-
-  // modal grid
-
-  .student-work-container{
- height: 100%;
-  }
-
-  .student-work-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr;
-    gap: 10px;
-height: 100%;
-  }
-
-  .student-name{
-    grid-column: 1/2;
-    grid-row: 1/2;
-    font-size: 20px;
-  }
-
-  .student-project{
-    grid-column: 1/2;
-    grid-row: 2/3;
-  }
-
-  .student-description{
-    grid-column: 1/2;
-    grid-row: 3/5;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .student-image{
-    grid-column: 2/3;
-    grid-row: 1/5;
-    img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background-color: $main-colour;
-    }
-  }
-
-  #close-modal {
-    position: absolute;
-    right: 29px;
-    top: 12px;
-    color: $main-colour;
-    font-size: 40px;
-    height: 50px;
-    width: 50px;
-    background: white;
-    border: solid 1px $main-colour;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .3s ease;
+  visibility: visible;
+  opacity: 1;
+  transition: all .3s ease;
+  z-index: 100;
+  border: solid 1px $main-colour;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all .3s ease;
+  cursor: pointer;
+  line-height: 1.2;
+  overflow: hidden;
+  font-family: $description-font;
 }
 
-#close-modal:hover{
+button:hover {
+  transition: all .3s ease;
+  color: white;
+  background-color: $main-colour;
+}
+
+// modal grid
+
+.student-work-container {
+  height: 100%;
+}
+
+.student-work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 2fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.student-name {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-size: 20px;
+}
+
+.student-project {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.student-description {
+  grid-column: 1/2;
+  grid-row: 3/5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.student-image {
+  grid-column: 2/3;
+  grid-row: 1/5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: $main-colour;
+  }
+}
+
+#close-modal {
+  position: absolute;
+  right: 29px;
+  top: 12px;
+  color: $main-colour;
+  font-size: 40px;
+  height: 50px;
+  width: 50px;
+  background: white;
+  border: solid 1px $main-colour;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+}
+
+#close-modal:hover {
   background: black;
   transition: all .3s ease;
 
 }
 
-.name-underline{
+.name-underline {
   width: 100%;
   height: 15px;
   background: $main-colour;
 }
 
-.edit-tools{
+.edit-tools {
   font-size: .6em;
-  button{
+
+  button {
     margin-right: 10px;
     font-family: $description-font;
   }
 }
 
-.modal-backdrop{
+.modal-backdrop {
   z-index: 0;
 }
 
-#productForm{
-  h1{
+#productForm {
+  h1 {
     font-size: 2em;
   }
 }
