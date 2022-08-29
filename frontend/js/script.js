@@ -1,9 +1,15 @@
+// ===========================
+//     DECLARE ALL INPUTS
+// ===========================
 const go = document.getElementById("student-button");
-// declare all our inputs
 const nameInput = document.getElementById("name-input");
 const titleInput = document.getElementById("title-input");
 const descriptionInput = document.getElementById("description-input");
 const imageURLInput = document.getElementById("image-url-input");
+
+// ===========================
+//     CREATE AJAX PAGES
+// ===========================
 
 let showAllStudents = () => {
   $.ajax({
@@ -13,6 +19,7 @@ let showAllStudents = () => {
     success: (students) => {
       console.log(students);
       displayStudents(students);
+      // projectModalContent(students);
     },
     error: (error) => {
       console.log(error);
@@ -45,11 +52,11 @@ go.onclick = () => {
   });
 };
 
-let deleteStudent = (studentId) => {
+let deleteStudent = (currentId) => {
   // use ajax and go to the delete route
   $.ajax({
     // Let's go to our route
-    url: `http://localhost:3100/deleteStudent/${studentId}`,
+    url: `http://localhost:3100/deleteStudent/${currentId}`,
     type: "DELETE",
     success: () => {
       showAllStudents();
@@ -59,6 +66,98 @@ let deleteStudent = (studentId) => {
     },
   });
 };
+
+// ==============================
+//  COLLECT PROJECT MODAL
+// ==============================
+
+// Render the inner HTML for the modal
+
+let renderProjectModal = (projectData) => {
+  let studentName = document.getElementById("student-name");
+  let studentProject = document.getElementById("student-project");
+  let studentDescription = document.getElementById("student-description");
+  let studentImage = document.getElementById("student-image");
+  let currentId = projectData._id;
+  studentName.innerHTML = `
+<h1>${projectData.name}</h1>
+<div class="name-underline"></div>
+`;
+
+  studentProject.innerHTML = `
+<h2>${projectData.title}</h2>
+`;
+
+  studentDescription.innerHTML = `
+<p>${projectData.description}</p>
+
+`;
+
+  studentImage.innerHTML = `
+<img src="${projectData.image_url}" alt="">
+`;
+
+    let deleteBtn = document.getElementById('delete-button');
+    deleteBtn.onclick = () => {
+      console.log(currentId);
+      deleteStudent(currentId);
+      projectModal.classList.toggle("active");
+    };
+
+    let editBtn = document.getElementById('edit-button');
+    editBtn.onclick = () => {
+      console.log(currentId);
+      populateEditModal(currentId);
+    };
+  };
+
+
+
+
+
+// Getting data from MongoDB to put in our project modal
+
+let populateProjectModal = (projectId) => {
+  $.ajax({
+    url: `http://localhost:3100/student/${projectId}`,
+    type: "GET",
+    success: (projectData) => {
+      // console.log('student was found');
+      console.log(projectData);
+      // thias is where renderprojectmodal is getting its data from
+      renderProjectModal(projectData);
+    },
+    error: (error) => {
+      console.log(error);
+    },
+  });
+};
+
+
+const openImage = document.getElementsByClassName("open-image");
+const closeModalBtn = document.getElementById("close-modal");
+const projectModal = document.getElementById("projectModal");
+
+let collectProjectModals = () => {
+  for (let i = 0; i < openImage.length; i++) {
+    // This is when the user clicks on the project image
+
+    openImage[i].onclick = () => {
+      console.log("You clicked the modal");
+      let projectId = openImage[i].parentNode.parentNode.id;
+      console.log(projectId);
+      populateProjectModal(projectId);
+      projectModal.classList.toggle("active");
+    };
+  }
+  closeModalBtn.onclick = () => {
+    projectModal.classList.toggle("active");
+  };
+};
+
+// ===========================
+//       EDIT FUNCTIONS
+// ===========================
 
 handleEditFunctionality = (student, id) => {
   let studentName = document.getElementById("studentName");
@@ -82,6 +181,7 @@ handleEditFunctionality = (student, id) => {
   $("#updateStudent").click(function () {
     event.preventDefault();
     let studentId = id;
+    console.log(id);
     let studentName = document.getElementById("studentName").value;
     let studentTitle = document.getElementById("studentTitle").value;
     let imageurl = document.getElementById("imageUrl").value;
@@ -102,6 +202,30 @@ handleEditFunctionality = (student, id) => {
         showAllStudents();
         $("#editModal").modal("hide");
         $("#updateStudent").off("click");
+        let studentN = document.getElementById("student-name");
+        let studentPro = document.getElementById("student-project");
+        let studentDes = document.getElementById("student-description");
+        let studentImg = document.getElementById("student-image");
+        studentN.innerHTML = `
+<h1>${studentName}</h1>
+<div class="name-underline"></div>
+`;
+
+  studentPro.innerHTML = `
+<h2>${studentTitle}</h2>
+`;
+
+  studentDes.innerHTML = `
+<p>${studentDescription}</p>
+
+`;
+
+  studentImg.innerHTML = `
+<img src="${imageurl}" alt="">
+`;
+console.log(studentId);
+populateProjectModal(studentId);
+        
       },
       error: function () {
         console.log("error: cannot update");
@@ -109,6 +233,10 @@ handleEditFunctionality = (student, id) => {
     });
   });
 };
+
+// ===========================
+//  ADD STUDENT MODAL CLICKS
+// ===========================
 
 $("#student-button").click(function () {
   event.preventDefault();
@@ -120,15 +248,19 @@ $("#close-add-student").click(function () {
   $("#addStudentModal").modal("hide");
 });
 
-populateEditModal = (studentId) => {
-  console.log(studentId);
+// ===========================
+//         EDIT MODAL
+// ===========================
+
+populateEditModal = (currentId) => {
+  console.log(currentId);
   $.ajax({
-    url: `http://localhost:3100/student/${studentId}`,
+    url: `http://localhost:3100/student/${currentId}`,
     type: "GET",
-    success: (studentData) => {
+    success: (projectData) => {
       // console.log('student was found');
       // console.log(student);
-      handleEditFunctionality(studentData, studentId);
+      handleEditFunctionality(projectData, currentId);
     },
     error: (error) => {
       console.log(error);
@@ -136,41 +268,25 @@ populateEditModal = (studentId) => {
   });
 };
 
-// this function will handle all our deletes
-let collectDeleteButtons = () => {
-  // this will return an Array, but it's a slightly different one
-  // it returns HTML "nodes" instead
-  // we'll have use a regular loop to loop over these
-  let deleteButtonsArray = document.getElementsByClassName("delete-button");
-  // this will loop over every delete button
-  for (let i = 0; i < deleteButtonsArray.length; i++) {
-    deleteButtonsArray[i].onclick = () => {
-      let currentId = deleteButtonsArray[i].parentNode.id;
-      // delete student based on the id
-      deleteStudent(currentId);
-    };
-  }
-};
+// ===========================
+//     ADD STUDENT MODAL
+// ===========================
 
-// this function will handle all our edits
-let collectEditButtons = () => {
-  // this will return an Array, but it's a slightly different one
-  // it returns HTML "nodes" instead
-  // we'll have use a regular loop to loop over these
-  let editButtonsArray = document.getElementsByClassName("edit-button");
-  // this will loop over every delete button
-  for (let i = 0; i < editButtonsArray.length; i++) {
-    editButtonsArray[i].onclick = () => {
-      let currentId = editButtonsArray[i].parentNode.id;
-      // delete student based on the id
-      populateEditModal(currentId);
-      console.log(currentId);
-    };
-  }
-};
+$("#student-button").click(function () {
+  event.preventDefault();
+  $("#addStudentModal").modal("hide");
+});
+
+$("#close-add-student").click(function () {
+  event.preventDefault();
+  $("#addStudentModal").modal("hide");
+});
+
+// ===========================
+//      DISPLAY STUDENTS
+// ===========================
 
 let displayStudents = (students) => {
-  console.log("The render student function is running");
   result.innerHTML = "";
   students.forEach((item) => {
     result.innerHTML += `
@@ -187,16 +303,20 @@ let displayStudents = (students) => {
 
       `;
   });
-  // all students should be displayed now
-  // and now we can collect the delete buttons
-  // collectDeleteButtons();
-  // collect edit buttons
-  // collectEditButtons();
-  collectOpenImages();
+
+  // collect the open model buttons
+  collectProjectModals();
 };
 
-// start app
+// ===========================
+//          START APP
+// ===========================
+
 showAllStudents();
+
+// ===========================
+// CHECK LOGIN FOR BUTTON USE
+// ===========================
 
 let checkLogin = () => {
   const userDetails = document.getElementById("user-details");
@@ -228,7 +348,6 @@ checkLogin();
 const signoutBtn = document.getElementById("sign-out-button");
 
 let logOut = () => {
-  console.log("You've logged out");
   sessionStorage.clear();
   window.location.reload();
 };
@@ -238,66 +357,6 @@ if (sessionStorage.userID) {
 }
 
 // PROJECT MODAL ------------------------------------------------------------
-const closeModalBtn = document.getElementById("close-modal");
-const projectModal = document.getElementById("projectModal");
-// const openImage = document.getElementsByClassName('open-image');
-
-let openModal = (id) => {
-  console.log("Clicked open modal");
-  projectModal.classList.toggle("active");
-  console.log(id);
-};
-
-closeModalBtn.onclick = () => {
-  projectModal.classList.toggle("active");
-};
-
-// this function will handle all our edits
-let collectOpenImages = () => {
-  console.log("Collecting images");
-  // this will return an Array, but it's a slightly different one
-  // it returns HTML "nodes" instead
-  // we'll have use a regular loop to loop over these
-  let openImagesArray = document.getElementsByClassName("open-image");
-  // this will loop over every delete button
-  for (let i = 0; i < openImagesArray.length; i++) {
-    openImagesArray[i].onclick = () => {
-      let currentId = openImagesArray[i].parentNode.id;
-      console.log(currentId);
-      console.log("This has passed the currentId log");
-      // delete student based on the id
-      openModal(currentId);
-    };
-  }
-};
-
-// Content that will appear in the student work modal
-
-let projectModalContent = (students) => {
-  console.log("The project modal is running");
-  projectModal.innerHTML = "";
-  students.forEach((item) => {
-    projectModal.innerHTML = `
-      <div class="left-container" id="${item._id}">
-      <img src="${item.image_url}" alt="${item.name}">
-      </div>
-      <div>
-      <h2>${item.name}</h2>
-      <h4>${item.title}</h4>
-      <p>${item.description}</p>
-     </div>
-
-      <i class="fa-solid fa-trash-can delete-button"></i>
-      <i class="fa-solid fa-pen-to-square edit-button" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-      </div>
-      `;
-  });
-  // all students should be rendered now
-  // and now we can collect the delete buttons
-  collectDeleteButtons();
-  // collect edit buttons
-  collectEditButtons();
-};
 
 //---------------------- ADD STUDENT BUTTON
 const addStudent = document.getElementById("addStudentBtn");
@@ -306,6 +365,5 @@ const addStudent = document.getElementById("addStudentBtn");
 const menuBtn = document.getElementById("nav-toggle-btn");
 const title = document.getElementById("absolute");
 menuBtn.onclick = () => {
-  console.log("You clicked the menu");
   title.classList.toggle("black");
 };
