@@ -217,6 +217,7 @@ app.get('/student/:id', (req, res) => {
 
 app.patch("/resultImage/:id", (req, res) => {
   const idParam = req.params.id;
+  console.log(idParam)
   Student.findById(idParam, (err, student) => {
     const updatedStudent = {
       name: req.body.name,

@@ -21,7 +21,7 @@
   <nav>
     <a href="index.html">Home</a>
   </nav>
-  <div id="tools-container">
+  <div id="signup-login-tools-container">
     <div id="tools">
       <div id="signup-login-title">
         <h1>Login</h1>
@@ -30,11 +30,14 @@
       <br>
       <form id="signup-login-form" action="javascript:void(0);">
         <label class="signup-login-label" for="name-input">Name: </label>
-        <input class="signup-login-input" id="name-input" name="name-input" type="text">
+        <input class="signup-login-input" id="name-input" name="name-input" type="text" placeholder="Name...">
         <label class="signup-login-label" for="password-input">Password: </label>
-        <input class="signup-login-input" id="password-input" name="password-input" type="password">
+        <input class="signup-login-input" id="password-input" name="password-input" type="password"
+          placeholder="Password...">
         <button id="signup-login-button">Login</button>
       </form>
+      <div id="register-alert"></div>
+      <a class="signup-login-redirect" href="signup.html">Dont have an account? Sign up now</a>
     </div>
   </div>
 
@@ -50,17 +53,15 @@
       <a href=""><i class="bi bi-twitter icon"></i></a>
     </div>
     <div class="footer-section" id="contact-links">
-      <a href="">
-        <h3 id="contact-title">Contact</h3>
+      <h3 id="contact-title">Contact</h3>
+      <a class="contact-link" href="">
+        <p>Email</p>
       </a>
-      <a href="">
-        <p class="contact-link">Email</p>
+      <a class="contact-link" href="">
+        <p>Phone</p>
       </a>
-      <a href="">
-        <p class="contact-link">Phone</p>
-      </a>
-      <a href="">
-        <p class="contact-link">Address</p>
+      <a class="contact-link" href="">
+        <p>Address</p>
       </a>
     </div>
 

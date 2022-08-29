@@ -4,7 +4,7 @@ const signupBtn = document.getElementById("signup-login-button");
 const usernameInput = document.getElementById("name-input");
 const passwordInput = document.getElementById("password-input");
 const profileImgInput = document.getElementById("image-url-input");
-
+const registerAlert = document.getElementById("register-alert");
 signupBtn.onclick = function () {
     event.preventDefault();
 
@@ -61,6 +61,9 @@ signupBtn.onclick = function () {
 
             } else {
                 console.log('username taken already. Please try another name')
+                registerAlert.innerHTML = `
+                <h2 id="register-alert-text">Username not available. Please try another name</h2>
+                `;
             } //end of else
             //if register is successful - log user in Ends
         },// end of success for giant ajax

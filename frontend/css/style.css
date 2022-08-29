@@ -75,6 +75,12 @@ h2 {
   margin: 0 5% 0 5%;
 }
 
+#signup-login-tools-container {
+  height: 100vh;
+  background-image: url("../img/gggrain.svg");
+  background-size: cover;
+}
+
 #signup-login-title {
   display: flex;
   justify-content: center;
@@ -82,7 +88,9 @@ h2 {
   align-items: center;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 75px;
+  padding-top: 10px;
+  border-top: 5px solid #5B3EDA;
 }
 
 .signup-login-label {
@@ -95,6 +103,8 @@ h2 {
 .signup-login-input {
   margin-top: 10px;
   height: 5vh;
+  font-size: 25px;
+  font-family: "FoundersGroteskRegular";
 }
 
 #signup-login-form {
@@ -115,7 +125,7 @@ h2 {
   border-radius: 0;
   transition: all 0.3s ease;
   cursor: pointer;
-  padding: 0.6em 0.7em 0.3em 0.7em;
+  padding: 0.6em 1em 0.3em 1em;
   line-height: 1.2;
   overflow: hidden;
   font-family: "FoundersGroteskRegular";
@@ -128,15 +138,37 @@ h2 {
   background-color: #5B3EDA;
 }
 
+.signup-login-redirect {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  font-family: "FoundersGroteskBold";
+  color: #a63eda;
+  transition: all 0.3s ease;
+}
+
+.signup-login-redirect:hover {
+  color: #5B3EDA;
+  font-size: 1.2em;
+}
+
+#register-alert {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  font-family: "FoundersGroteskBold";
+  color: #a63eda;
+}
+
 footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 35px;
   background: black;
   width: 100%;
-  height: 200px;
+  height: auto;
   padding: 30px 100px 30px 100px;
 }
 
@@ -197,6 +229,25 @@ footer {
   text-decoration: none;
 }
 
+@media only screen and (max-width: 800px) {
+  footer {
+    flex-direction: column;
+  }
+  footer #contact-links {
+    justify-content: center;
+  }
+  footer .footer-section {
+    margin: 30px;
+  }
+  footer #footer-header {
+    border-left: 5px solid white;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 160px;
+  }
+}
 header {
   position: absolute;
   height: 0px;
